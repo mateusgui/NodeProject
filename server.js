@@ -4,6 +4,10 @@ const app = express()
 app.use(express.json())
 app.listen(3000) // http://localhost:3000
 
+//CORS
+import cors from 'cors'
+app.use(cors()); // Habilitar CORS para todas as origens
+
 //PRISMA
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
