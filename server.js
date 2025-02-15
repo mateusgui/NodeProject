@@ -25,15 +25,19 @@ app.get('/usuarios', async (request,response) => {
 //POST - CRIAR - http://localhost:3000/usuarios
 app.post('/usuarios', async (request,response) => {
     
-    const user = await prisma.user.create({
-        data: {
-            email: request.body.email,
-            name: request.body.name,
-            age: request.body.age
-        }
-    })
-
-    response.status(201).json(user)
+    try {
+        const user = await prisma.user.create({
+            data: {
+                email: request.body.email,
+                name: request.body.name,
+                age: request.body.age
+            }
+        })
+    
+        response.status(201).json(user)
+    } catch (error) {
+        response.status(500)
+    }
 })
 
 
